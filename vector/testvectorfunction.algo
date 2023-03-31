@@ -1,0 +1,26 @@
+ALGORITHM function called dot_product
+VAR
+arrayV1, arraySetV2 = ARRAY_OF INTEGER[];
+ps, i = INTEGER
+
+BEGIN
+//calling the function dot_product
+  function dot_product(arrayV1, arrayV2)
+    ps := 0
+    // Loop through the arrayV1 and arrayV2
+    FOR (let i = 0 ; i < arrayV1.length ; i++) DO
+    //Multiply the value arrayV1[i] with the value arrayV2[i] and add it with the value of ps
+      set ps = ps + arrayV1[i] * arrayV2[i]
+    END FOR
+    //return the value ps
+    return ps
+  END function
+// Initialize the input arrays and ps variable by calling the function
+  arrayV1 := [-4, 1, 1]
+  arrayV2 := [2, 9, -1]
+  ps := dot_product(arrayV1, arrayV2)
+ INITIALIZE("give arrayV1 and arrayV2 a value")
+  READ(function dot_product())
+END
+// Output the final ps value
+WRITE(ps)

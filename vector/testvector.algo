@@ -1,0 +1,21 @@
+ALGORITHM  procedure called dot_product 
+VAR
+  arrayV1, arrayV2 = ARRAY_OF INTEGER[];
+  ps, i = INTEGER
+  
+BEGIN
+    // Initialize the input arrays and ps variable
+    arrayV1 := [-4, 1, 1]
+    arrayV2 := [2, 9, -1]
+    ps := 0
+    
+INITIALIZE("give arrayV1 & arrayV2 a value")    
+READ(arrayV1 & arrayV2)
+ // Loop through the arrayV1 and arrayV2
+  FOR (i = 0; i < arrayV1.lenght ; i++) DO
+   //Multiply the value arrayV1[i] with the value arrayV2[i] and add it with the value of ps
+    set ps = ps + arrayV1[i] * arrayV2[i]
+  END FOR
+END
+  // Output the final ps value
+  WRITE(ps)
