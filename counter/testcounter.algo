@@ -1,32 +1,48 @@
 ALGORITHM counter of similar number
 VAR
-arrayOutput, arraySet1, arraySet2 = ARRAY_OF INTEGER[];
-counter, i , j, k = INTEGER
+arraySet1, arraySet2 = ARRAY_OF INTEGER[];
+output, i , j = INTEGER;
+counter = BOOLEAN;
+
 
 BEGIN
-// Initialize the input arrays and counter variable
-arrayOutput := [4, 7, 2]
-arraySet1 := [3, 1, 7, 9]
-arraySet2 := [2, 4, 1, 9, 3]
-counter = 0
-INITIALIZE("give arrayOutput, arraySet1, arraySet2 a value")
-READ(arrayOutput,arraySet1,arraySet2)
-// Loop through the output array
-FOR (let i = 0 ; i < arrayOutput.length ; i++) DO
-  // Check if the current element exists in set 1 and add it to the counter
-  FOR (let j = 0 ; j < arraySet1.length, j++) DO
-    IF (arrayOutput[i] == arraySet1[j]) THEN
-      counter = counter + arrayOutput[i]
+// Initialize the arrays(or taking the input from the user), counter and output variable
+arraySet1 := []
+arraySet2 := []
+counter = true;
+output = 0;
+INITIALIZE("give arraySet1, arraySet2, counter and output a value")
+READ(arraySet1,arraySet2)
+
+//Loop through Set1 and Set2 and as soon as an equal number is found, the counter changes to false.Set1 stands as reference array.
+FOR (let i = 0 ; i < arraySet1.length ; i++) DO
+  FOR (let j = 0 ; j < arraySet2.length, j++) DO
+    IF (arraySet1[i] == arraySet2[j]) THEN
+      counter = false;
     END IF
   END FOR
-  
-  // Check if the current element exists in set 2 and add it to the counter
-  FOR (let k = 0 ; k < arraySet2.length, k++) DO
-    IF (arrayOutput[i] == arraySet2[k]) THEN
-      counter = counter + arrayOutput[i]
+  //If the value of the counter is still true, the value of arraySet1[i] is added to the output and is added to the existing value.
+   IF (counter == true) THEN
+    output += arraySet1[i];
     END IF
-  END FOR
+  //if the value of the counter is false, it is changed to true again.  
+  counter = true;
 END FOR
+//Loop through Set1 and Set2 and as soon as an equal number is found, the counter changes to false.Set2 stands as reference array.
+FOR (let i = 0 ; i < arraySet2.length ; i++) DO
+  FOR (let j = 0 ; j < arraySet1.length, j++) DO
+    IF (arraySet2[i] == arraySet1[j]) THEN
+      counter = false;
+    END IF
+  END FOR
+  //If the value of the counter is still true, the value of arraySet2[i] is added to the output and is added to the existing value.
+   IF (counter == true) THEN
+    output += arraySet2[i];
+    END IF
+  //if the value of the counter is false, it is changed to true again.  
+  counter = true;
+END FOR
+
 END
-// Output the final counter value
-WRITE(counter)
+// Output the final output value
+WRITE(output)
